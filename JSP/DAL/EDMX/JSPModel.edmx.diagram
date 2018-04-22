@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cf26faf00f674703889dd879cfc68129" Name="Diagram1">
+        <EntityTypeShape EntityType="JSPModel.Client_Details" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JSPModel.Client_Invoice" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JSPModel.Client" Width="1.5" PointX="2.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JSPModel.Company_Details" Width="1.75" PointX="6.125" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JSPModel.Login" Width="1.5" PointX="6.875" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="JSPModel.ReturnType" Width="1.5" PointX="4.75" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="JSPModel.ReturnTypeClient" />
+        <AssociationConnector Association="JSPModel.ClientClient_Details" />
+        <AssociationConnector Association="JSPModel.Client_DetailsClient_Invoice" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

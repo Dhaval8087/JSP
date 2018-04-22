@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="JSPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="JSPModelStoreContainer">
+    <EntitySet Name="Client_Details" EntityType="JSPModel.Store.Client_Details" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Client_Invoice" EntityType="JSPModel.Store.Client_Invoice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clients" EntityType="JSPModel.Store.Clients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Company_Details" EntityType="JSPModel.Store.Company_Details" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Logins" EntityType="JSPModel.Store.Logins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReturnTypes" EntityType="JSPModel.Store.ReturnTypes" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ReturnTypeClient" Association="JSPModel.Store.ReturnTypeClient">
+      <End Role="ReturnType" EntitySet="ReturnTypes" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="ClientClient_Details" Association="JSPModel.Store.ClientClient_Details">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Client_Details" EntitySet="Client_Details" />
+    </AssociationSet>
+    <AssociationSet Name="Client_DetailsClient_Invoice" Association="JSPModel.Store.Client_DetailsClient_Invoice">
+      <End Role="Client_Details" EntitySet="Client_Details" />
+      <End Role="Client_Invoice" EntitySet="Client_Invoice" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Client_Details">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AY" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Client_Invoice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="true" />
+    <Property Name="InvoiceNumber" Type="varchar(max)" Nullable="true" />
+    <Property Name="Client_DetailsId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="true" MaxLength="150" />
+    <Property Name="Address1" Type="varchar(max)" Nullable="true" />
+    <Property Name="Address2" Type="varchar(max)" Nullable="true" />
+    <Property Name="City" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="State" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="PinCode" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="150" />
+    <Property Name="Mobile" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="ReturnTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Company_Details">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="true" MaxLength="150" />
+    <Property Name="Address1" Type="varchar(max)" Nullable="true" />
+    <Property Name="Address2" Type="varchar(max)" Nullable="true" />
+    <Property Name="City" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="State" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="PinCode" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="150" />
+    <Property Name="Mobile" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Logins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" Nullable="true" MaxLength="150" />
+    <Property Name="Password" Type="varchar" Nullable="true" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="ReturnTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nchar" Nullable="true" MaxLength="10" />
+  </EntityType>
+  <Association Name="ReturnTypeClient">
+    <End Role="ReturnType" Type="JSPModel.Store.ReturnTypes" Multiplicity="1" />
+    <End Role="Client" Type="JSPModel.Store.Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReturnType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="ReturnTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientClient_Details">
+    <End Role="Client" Type="JSPModel.Store.Clients" Multiplicity="1" />
+    <End Role="Client_Details" Type="JSPModel.Store.Client_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client_Details">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Client_DetailsClient_Invoice">
+    <End Role="Client_Details" Type="JSPModel.Store.Client_Details" Multiplicity="1" />
+    <End Role="Client_Invoice" Type="JSPModel.Store.Client_Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client_Details">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client_Invoice">
+        <PropertyRef Name="Client_DetailsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JSPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client_Details">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Client" Relationship="JSPModel.ClientClient_Details" FromRole="Client_Details" ToRole="Client" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client_Invoice" Relationship="JSPModel.Client_DetailsClient_Invoice" FromRole="Client_Details" ToRole="Client_Invoice" />
+        </EntityType>
+        <EntityType Name="Client_Invoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_Id" Type="Int32" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Client_Details" Relationship="JSPModel.Client_DetailsClient_Invoice" FromRole="Client_Invoice" ToRole="Client_Details" />
+          <Property Name="Client_DetailsId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ReturnType" Relationship="JSPModel.ReturnTypeClient" FromRole="Client" ToRole="ReturnType" />
+          <Property Name="ReturnTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client_Details" Relationship="JSPModel.ClientClient_Details" FromRole="Client" ToRole="Client_Details" />
+        </EntityType>
+        <EntityType Name="Company_Details">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ReturnType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="JSPModel.ReturnTypeClient" FromRole="ReturnType" ToRole="Client" />
+        </EntityType>
+        <EntityContainer Name="JSPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client_Details" EntityType="Self.Client_Details" />
+          <EntitySet Name="Client_Invoice" EntityType="Self.Client_Invoice" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Company_Details" EntityType="Self.Company_Details" />
+          <EntitySet Name="Logins" EntityType="Self.Login" />
+          <EntitySet Name="ReturnTypes" EntityType="Self.ReturnType" />
+          <AssociationSet Name="ReturnTypeClient" Association="JSPModel.ReturnTypeClient">
+            <End Role="ReturnType" EntitySet="ReturnTypes" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="ClientClient_Details" Association="JSPModel.ClientClient_Details">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Client_Details" EntitySet="Client_Details" />
+          </AssociationSet>
+          <AssociationSet Name="Client_DetailsClient_Invoice" Association="JSPModel.Client_DetailsClient_Invoice">
+            <End Role="Client_Details" EntitySet="Client_Details" />
+            <End Role="Client_Invoice" EntitySet="Client_Invoice" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="ReturnTypeClient">
+          <End Type="JSPModel.ReturnType" Role="ReturnType" Multiplicity="1" />
+          <End Type="JSPModel.Client" Role="Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ReturnTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClientClient_Details">
+          <End Type="JSPModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="JSPModel.Client_Details" Role="Client_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client_Details">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Client_DetailsClient_Invoice">
+          <End Type="JSPModel.Client_Details" Role="Client_Details" Multiplicity="1" />
+          <End Type="JSPModel.Client_Invoice" Role="Client_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client_Details">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client_Invoice">
+              <PropertyRef Name="Client_DetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JSPModelStoreContainer" CdmEntityContainer="JSPEntities">
+    <EntitySetMapping Name="Client_Details">
+      <EntityTypeMapping TypeName="IsTypeOf(JSPModel.Client_Details)">
+        <MappingFragment StoreEntitySet="Client_Details">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AY" ColumnName="AY" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Client_Invoice">
+      <EntityTypeMapping TypeName="IsTypeOf(JSPModel.Client_Invoice)">
+        <MappingFragment StoreEntitySet="Client_Invoice">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Client_Id" ColumnName="Client_Id" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="Client_DetailsId" ColumnName="Client_DetailsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IsTypeOf(JSPModel.Client)">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="ReturnTypeId" ColumnName="ReturnTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Company_Details">
+      <EntityTypeMapping TypeName="IsTypeOf(JSPModel.Company_Details)">
+        <MappingFragment StoreEntitySet="Company_Details">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="IsTypeOf(JSPModel.Login)">
+        <MappingFragment StoreEntitySet="Logins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReturnTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(JSPModel.ReturnType)">
+        <MappingFragment StoreEntitySet="ReturnTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
