@@ -1,11 +1,16 @@
-﻿using GalaSoft.MvvmLight;
-
-namespace JSP.ViewModels
+﻿namespace JSP.ViewModels
 {
-    internal class LoginPageViewModel : ViewModelBase
+    internal class LoginPageViewModel : JSPViewModelBase
     {
         public LoginPageViewModel()
         {
+
         }
+
+        #region Properties
+
+
+
+        #endregion
     }
 }
