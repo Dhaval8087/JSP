@@ -4,125 +4,128 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="JSPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="JSPModelStoreContainer">
-    <EntitySet Name="Client_Details" EntityType="JSPModel.Store.Client_Details" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Client_Invoice" EntityType="JSPModel.Store.Client_Invoice" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Clients" EntityType="JSPModel.Store.Clients" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Company_Details" EntityType="JSPModel.Store.Company_Details" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Logins" EntityType="JSPModel.Store.Logins" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ReturnTypes" EntityType="JSPModel.Store.ReturnTypes" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="ReturnTypeClient" Association="JSPModel.Store.ReturnTypeClient">
-      <End Role="ReturnType" EntitySet="ReturnTypes" />
-      <End Role="Client" EntitySet="Clients" />
-    </AssociationSet>
-    <AssociationSet Name="ClientClient_Details" Association="JSPModel.Store.ClientClient_Details">
-      <End Role="Client" EntitySet="Clients" />
-      <End Role="Client_Details" EntitySet="Client_Details" />
-    </AssociationSet>
-    <AssociationSet Name="Client_DetailsClient_Invoice" Association="JSPModel.Store.Client_DetailsClient_Invoice">
-      <End Role="Client_Details" EntitySet="Client_Details" />
-      <End Role="Client_Invoice" EntitySet="Client_Invoice" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Client_Details">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="AY" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="ClientId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Client_Invoice">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Client_Id" Type="int" Nullable="true" />
-    <Property Name="InvoiceNumber" Type="varchar(max)" Nullable="true" />
-    <Property Name="Client_DetailsId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Clients">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" Nullable="true" MaxLength="150" />
-    <Property Name="Address1" Type="varchar(max)" Nullable="true" />
-    <Property Name="Address2" Type="varchar(max)" Nullable="true" />
-    <Property Name="City" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="State" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="PinCode" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="Mobile" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="ReturnTypeId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Company_Details">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" Nullable="true" MaxLength="150" />
-    <Property Name="Address1" Type="varchar(max)" Nullable="true" />
-    <Property Name="Address2" Type="varchar(max)" Nullable="true" />
-    <Property Name="City" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="State" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="PinCode" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="Mobile" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Logins">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="varchar" Nullable="true" MaxLength="150" />
-    <Property Name="Password" Type="varchar" Nullable="true" MaxLength="150" />
-  </EntityType>
-  <EntityType Name="ReturnTypes">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Type" Type="nchar" Nullable="true" MaxLength="10" />
-  </EntityType>
-  <Association Name="ReturnTypeClient">
-    <End Role="ReturnType" Type="JSPModel.Store.ReturnTypes" Multiplicity="1" />
-    <End Role="Client" Type="JSPModel.Store.Clients" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ReturnType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Client">
-        <PropertyRef Name="ReturnTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ClientClient_Details">
-    <End Role="Client" Type="JSPModel.Store.Clients" Multiplicity="1" />
-    <End Role="Client_Details" Type="JSPModel.Store.Client_Details" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Client">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Client_Details">
-        <PropertyRef Name="ClientId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Client_DetailsClient_Invoice">
-    <End Role="Client_Details" Type="JSPModel.Store.Client_Details" Multiplicity="1" />
-    <End Role="Client_Invoice" Type="JSPModel.Store.Client_Invoice" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Client_Details">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Client_Invoice">
-        <PropertyRef Name="Client_DetailsId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="JSPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client_Details">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AY" Type="varchar" MaxLength="50" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client_Invoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_Id" Type="int" />
+          <Property Name="InvoiceNumber" Type="varchar(max)" />
+          <Property Name="Client_DetailsId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="Address1" Type="varchar(max)" />
+          <Property Name="Address2" Type="varchar(max)" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="PinCode" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="ReturnTypeId" Type="int" Nullable="false" />
+          <Property Name="PAN" Type="varchar" MaxLength="50" />
+          <Property Name="GST" Type="varchar(max)" />
+          <Property Name="DOB" Type="date" />
+        </EntityType>
+        <EntityType Name="Company_Details">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="Address1" Type="varchar(max)" />
+          <Property Name="Address2" Type="varchar(max)" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="PinCode" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="150" />
+          <Property Name="Password" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="ReturnTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Client_DetailsClient_Invoice">
+          <End Role="Client_Details" Type="Self.Client_Details" Multiplicity="1" />
+          <End Role="Client_Invoice" Type="Self.Client_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client_Details">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client_Invoice">
+              <PropertyRef Name="Client_DetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientClient_Details">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Client_Details" Type="Self.Client_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client_Details">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnTypeClient">
+          <End Role="ReturnTypes" Type="Self.ReturnTypes" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="ReturnTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JSPModelStoreContainer">
+          <EntitySet Name="Client_Details" EntityType="Self.Client_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client_Invoice" EntityType="Self.Client_Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company_Details" EntityType="Self.Company_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReturnTypes" EntityType="Self.ReturnTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Client_DetailsClient_Invoice" Association="Self.FK_Client_DetailsClient_Invoice">
+            <End Role="Client_Details" EntitySet="Client_Details" />
+            <End Role="Client_Invoice" EntitySet="Client_Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientClient_Details" Association="Self.FK_ClientClient_Details">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Client_Details" EntitySet="Client_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnTypeClient" Association="Self.FK_ReturnTypeClient">
+            <End Role="ReturnTypes" EntitySet="ReturnTypes" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JSPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -162,6 +165,9 @@
           <NavigationProperty Name="ReturnType" Relationship="JSPModel.ReturnTypeClient" FromRole="Client" ToRole="ReturnType" />
           <Property Name="ReturnTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Client_Details" Relationship="JSPModel.ClientClient_Details" FromRole="Client" ToRole="Client_Details" />
+          <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Company_Details">
           <Key>
@@ -277,7 +283,10 @@
     <EntitySetMapping Name="Clients">
       <EntityTypeMapping TypeName="IsTypeOf(JSPModel.Client)">
         <MappingFragment StoreEntitySet="Clients">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Address1" ColumnName="Address1" />
           <ScalarProperty Name="Address2" ColumnName="Address2" />

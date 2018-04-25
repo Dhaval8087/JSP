@@ -1,11 +1,6 @@
 ﻿using DAL.Impl;
+using JSP.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace JSP
@@ -15,12 +10,13 @@ namespace JSP
     /// </summary>
     public partial class App : Application
     {
-
+        public static ContainerViewModel ContainerVM { get; set; }
         public App()
         {
             Log4Net.WriteInfo("============================" + DateTime.Today.Date.ToShortDateString() + "============");
             Log4Net.WriteInfo("Process Start");
+
         }
-        
+
     }
 }

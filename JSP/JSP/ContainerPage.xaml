@@ -7,8 +7,9 @@
 
         xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-       WindowStartupLocation="CenterScreen" Visibility="Visible"  WindowStyle="SingleBorderWindow"  AllowsTransparency="False"
-        Title="MainWindow" WindowState="Maximized">
+        Height="800" Width="800"
+       WindowStartupLocation="CenterScreen" Visibility="Visible"  WindowStyle="ToolWindow"  AllowsTransparency="False"
+        Title="MainWindow">
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="Template">

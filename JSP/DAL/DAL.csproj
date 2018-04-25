@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="Impl\Log4Net.cs" />
     <Compile Include="Impl\LoginRepository.cs" />
+    <Compile Include="Impl\ReturnTypeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

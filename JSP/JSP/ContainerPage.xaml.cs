@@ -11,7 +11,9 @@ namespace JSP
         public ContainerPage()
         {
             InitializeComponent();
-            this.DataContext = new JSPViewModelBase();
+            var containervm = new ContainerViewModel();
+            this.DataContext = containervm;
+            App.ContainerVM = containervm;
         }
     }
 }

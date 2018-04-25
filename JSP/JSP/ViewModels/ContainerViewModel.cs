@@ -4,12 +4,11 @@ using System.Windows.Controls;
 
 namespace JSP.ViewModels
 {
-    public  class JSPViewModelBase : ViewModelBase
+    public class ContainerViewModel : ViewModelBase
     {
-        public JSPViewModelBase()
+        public ContainerViewModel()
         {
             Content.Content = new LoginPage();
-
         }
         private bool _IsBusy;
 

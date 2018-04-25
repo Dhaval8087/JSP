@@ -29,6 +29,9 @@ namespace DAL.EDMX
         public string Email { get; set; }
         public string Mobile { get; set; }
         public int ReturnTypeId { get; set; }
+        public string PAN { get; set; }
+        public string GST { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
     
         public virtual ReturnType ReturnType { get; set; }
         public virtual ICollection<Client_Details> Client_Details { get; set; }

@@ -19,14 +19,28 @@
         <TextBlock Text="Welcome to JSP" FontSize="35" Width="Auto"
                    Style="{StaticResource TextBlockStyle}" Margin="-8,-100,8,0" />
 
-        <TextBox Tag="User Name" Grid.Row="0"  FontSize="20"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+        <TextBox  Grid.Row="0"
+                  FontSize="20"
+                  x:Name="username"
+                  Text="{Binding Username}"
                  Style="{StaticResource MyWaterMarkStyle}"/>
-        <TextBox Tag="Password" Grid.Row="2" Style="{StaticResource MyWaterMarkStyle}" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <PasswordBox
+            Tag="Password"
+            Grid.Row="2"
+            FontSize="20"
+
+            x:Name="password"
+            />
 
 
         <Button x:Name="btnLogin" Width="150" Height="60"
                  BorderThickness="1"
-                Content="Login"   Foreground="White" Grid.Row="4"  FontSize="15" Style="{StaticResource roundButton}">
+                Content="Login"
+                Foreground="White"
+                Grid.Row="4"
+                FontSize="15"
+                Style="{StaticResource roundButton}"
+                Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=password}">
         </Button>
 
     </Grid>
