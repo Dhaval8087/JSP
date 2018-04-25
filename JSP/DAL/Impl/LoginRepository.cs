@@ -1,26 +1,20 @@
-﻿using DAL.Dtos;
-using DAL.EDMX;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Impl
 {
-    public class LoginRepository
+    public class LoginRepository : BaseImplementation
     {
-        private JSPEntities _context;
+
         public LoginRepository()
         {
-            _context = new JSPEntities();
         }
-       public bool AutheticateUser(string username,string password)
+        public bool AutheticateUser(string username, string password)
         {
             bool isValid = false;
             try
             {
-                if(!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
                 {
                     return _context.Logins.Any(p => p.Username.ToLower() == username.ToLower() && p.Password == password);
                 }

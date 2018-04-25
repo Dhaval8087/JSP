@@ -1,9 +1,10 @@
-﻿using GalaSoft.MvvmLight;
+﻿using DAL.EDMX;
+using GalaSoft.MvvmLight;
 using System;
 
 namespace JSP.Models
 {
-    public class Client:ViewModelBase
+    public class Client : ViewModelBase
     {
         private string _Name;
 
@@ -18,7 +19,7 @@ namespace JSP.Models
         public string Address1
         {
             get { return _Address1; }
-            set { _Address1 = value;RaisePropertyChanged(); }
+            set { _Address1 = value; RaisePropertyChanged(); }
         }
 
         private string _Address2;
@@ -49,7 +50,7 @@ namespace JSP.Models
         public string Pin
         {
             get { return _Pin; }
-            set { _Pin = value;RaisePropertyChanged(); }
+            set { _Pin = value; RaisePropertyChanged(); }
         }
         private string _Phone;
 
@@ -73,14 +74,36 @@ namespace JSP.Models
             get { return _GST; }
             set { _GST = value; RaisePropertyChanged(); }
         }
-        private DateTime _DOB=DateTime.Now;
+        private DateTime _DOB = DateTime.Now;
 
         public DateTime DOB
         {
             get { return _DOB; }
             set { _DOB = value; RaisePropertyChanged(); }
         }
+        private string _Email;
+
+        public string Email
+        {
+            get { return _Email; }
+            set { _Email = value; RaisePropertyChanged(); }
+        }
+
+        private ReturnType _SelectedReturnType;
+
+        public ReturnType SelectedReturnType
+        {
+            get { return _SelectedReturnType; }
+            set
+            {
+                _SelectedReturnType = value;
+                if (value != null && value.Id == 1)
+                    GST = string.Empty;
+                RaisePropertyChanged();
+            }
+        }
 
 
+        public bool IsValid { get; set; } = true;
     }
 }
