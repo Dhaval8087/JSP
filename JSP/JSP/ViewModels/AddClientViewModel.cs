@@ -4,16 +4,18 @@ using GalaSoft.MvvmLight.Command;
 using JSP.Models;
 using JSP.Util;
 using System.Collections.ObjectModel;
-
 namespace JSP.ViewModels
 {
     public class AddClientViewModel : ViewModelBase
     {
         private ReturnTypeRepository returnTypeRepo;
+        private ClientRepository clientRepo;
         public AddClientViewModel()
         {
             returnTypeRepo = new ReturnTypeRepository();
+            clientRepo = new ClientRepository();
             App.ContainerVM.IsBusy = true;
+            App.ContainerVM.AYMenuVisbility = System.Windows.Visibility.Visible;
             LoadReturnTypes();
         }
         #region Properties
@@ -48,7 +50,28 @@ namespace JSP.ViewModels
                 CheckValidation();
                 if (CustomerDetails.IsValid)
                 {
-
+                    DAL.EDMX.Client client = new DAL.EDMX.Client
+                    {
+                        Address1 = CustomerDetails.Address1,
+                        Address2 = CustomerDetails.Address2,
+                        City = CustomerDetails.City,
+                        DOB = CustomerDetails.DOB.Date.ToShortDateString(),
+                        Email = CustomerDetails.Email,
+                        GST = CustomerDetails.GST,
+                        Mobile = CustomerDetails.Phone,
+                        PAN = CustomerDetails.PAN,
+                        Name = CustomerDetails.Name,
+                        PinCode = CustomerDetails.Pin,
+                        ReturnTypeId = CustomerDetails.SelectedReturnType.Id,
+                        State = CustomerDetails.State
+                    };
+                    App.ContainerVM.IsBusy = true;
+                    var result = clientRepo.Add(client);
+                    if (!result.ResultSuccess)
+                    {
+                        HandlePopUp.ShowPopUp(result);
+                    }
+                    App.ContainerVM.IsBusy = false;
                 }
             }));
             }
@@ -89,19 +112,19 @@ namespace JSP.ViewModels
             {
                 ShowError("Email");
             }
-            else if(CustomerDetails.SelectedReturnType==null)
+            else if (CustomerDetails.SelectedReturnType == null)
             {
                 ShowError("Return type");
             }
-            else if(CustomerDetails.SelectedReturnType.Id==2 && string.IsNullOrEmpty(CustomerDetails.GST))
+            else if (CustomerDetails.SelectedReturnType.Id == 2 && string.IsNullOrEmpty(CustomerDetails.GST))
             {
                 ShowError("GST");
             }
-            else if(string.IsNullOrEmpty(CustomerDetails.PAN))
+            else if (string.IsNullOrEmpty(CustomerDetails.PAN))
             {
                 ShowError("PAN CARD");
             }
-           
+
 
 
         }

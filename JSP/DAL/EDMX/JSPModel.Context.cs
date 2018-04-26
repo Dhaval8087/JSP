@@ -31,5 +31,6 @@ namespace DAL.EDMX
         public DbSet<Company_Details> Company_Details { get; set; }
         public DbSet<Login> Logins { get; set; }
         public DbSet<ReturnType> ReturnTypes { get; set; }
+        public DbSet<AccessYear> AccessYears { get; set; }
     }
 }

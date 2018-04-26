@@ -14,6 +14,7 @@
         <AssociationConnector Association="JSPModel.ReturnTypeClient" />
         <AssociationConnector Association="JSPModel.ClientClient_Details" />
         <AssociationConnector Association="JSPModel.Client_DetailsClient_Invoice" />
+        <EntityTypeShape EntityType="JSPModel.AccessYear" Width="1.5" PointX="8.625" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

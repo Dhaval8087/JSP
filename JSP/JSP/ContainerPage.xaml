@@ -7,8 +7,9 @@
 
         xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Height="800" Width="800"
-       WindowStartupLocation="CenterScreen" Visibility="Visible"  WindowStyle="ToolWindow"  AllowsTransparency="False"
+        Height="900" Width="1000"
+
+       WindowStartupLocation="CenterScreen" Visibility="Visible"  WindowStyle="None"  AllowsTransparency="True"
         Title="MainWindow">
     <Window.Style>
         <Style TargetType="{x:Type Window}">
@@ -26,15 +27,28 @@
                                 <DropShadowEffect ShadowDepth="0" Color="Orange" Opacity="15"
                                                   BlurRadius="5" Direction="45"  RenderingBias="Quality"/>
                             </Border.Effect>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ContentPresenter />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
     </Window.Style>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" FontSize="15">
+            <MenuItem Header="File">
+                <MenuItem Header="_Exit" Command="{Binding ExitCommand}" />
+            </MenuItem>
+            <MenuItem Header="AY" Visibility="{Binding AYMenuVisbility}">
+                <MenuItem Header="_Manage AY" Command="{Binding AYCommand}"  />
+            </MenuItem>
+        </Menu>
 
-    <extToolkit:BusyIndicator IsBusy="{Binding IsBusy}">
-        <ContentControl Content="{Binding Content,Mode=TwoWay}" />
-    </extToolkit:BusyIndicator>
+        <extToolkit:BusyIndicator IsBusy="{Binding IsBusy}">
+            <ContentControl Content="{Binding Content,Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </extToolkit:BusyIndicator>
+    </DockPanel>
+
+
+
 </Window>

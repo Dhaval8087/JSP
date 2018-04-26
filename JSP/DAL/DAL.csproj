@@ -53,7 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dtos\Login.cs" />
+    <Compile Include="Dtos\ResponseBase.cs" />
     <Compile Include="Dtos\ReturnsType.cs" />
+    <Compile Include="EDMX\AccessYear.cs">
+      <DependentUpon>JSPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EDMX\Client.cs">
       <DependentUpon>JSPModel.tt</DependentUpon>
     </Compile>
@@ -87,6 +91,7 @@
     <Compile Include="EDMX\ReturnType.cs">
       <DependentUpon>JSPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Impl\AccessYearRepository.cs" />
     <Compile Include="Impl\BaseImplementation.cs" />
     <Compile Include="Impl\ClientRepository.cs" />
     <Compile Include="Impl\Log4Net.cs" />

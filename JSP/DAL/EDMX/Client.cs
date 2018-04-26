@@ -31,7 +31,7 @@ namespace DAL.EDMX
         public int ReturnTypeId { get; set; }
         public string PAN { get; set; }
         public string GST { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
+        public string DOB { get; set; }
     
         public virtual ReturnType ReturnType { get; set; }
         public virtual ICollection<Client_Details> Client_Details { get; set; }

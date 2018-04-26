@@ -3,10 +3,90 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:JSP.Views"
+             Height="900" Width="900"
              mc:Ignorable="d"
             >
+
     <Grid>
-        <TextBlock Text="Dashboad" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="110" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Dashboard" FontWeight="ExtraBold" Foreground="Purple" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.ColumnSpan="4"/>
+        <StackPanel Orientation="Vertical" Grid.Column="4" Margin="0,5,0,0">
+            <TextBlock Text="{Binding TodayTime}" FontSize="15" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Today}" FontSize="20" HorizontalAlignment="Center" />
+        </StackPanel>
+        <Rectangle x:Name="rectangle1"  Grid.Row="1" Grid.ColumnSpan="5" Height="3" Fill="Red" Stroke="Orange" HorizontalAlignment="Stretch"  />
+
+        <Button Cursor="Hand" Grid.Row="2" Grid.Column="0"   Command="{Binding LoadClientsCommand, Mode=TwoWay}" CommandParameter="1" Height="Auto">
+            <Button.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36.6" />
+                        <RowDefinition Height="36.6" />
+                        <RowDefinition Height="36.6" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="74" />
+                        <ColumnDefinition Width="59.6" />
+                        <ColumnDefinition Width="66.6" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/JSP;component/Resources/IT.png" Grid.RowSpan="2" Grid.Row="0" Margin="-5,-2,5,2.2" />
+                    <TextBlock Text="Clients" HorizontalAlignment="Left" Grid.Row="2" Foreground="White" VerticalAlignment="Bottom" FontSize="12" Margin="0,0,0,6.8" Height="15" Width="72" />
+                    <TextBlock Text="     IT&#10;CLIENTS" Grid.Column="1" Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="10,0,0.2,36.2" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button Cursor="Hand" Grid.Row="2" Grid.Column="2"   Command="{Binding LoadClientsCommand, Mode=TwoWay}" CommandParameter="2" Height="Auto">
+            <Button.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36.6" />
+                        <RowDefinition Height="36.6" />
+                        <RowDefinition Height="36.6" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="74" />
+                        <ColumnDefinition Width="59.6" />
+                        <ColumnDefinition Width="66.6" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/JSP;component/Resources/GST.png" Grid.RowSpan="2" Grid.Row="0" Margin="-5,-2,5,2.2" />
+                    <TextBlock Text="Clients" HorizontalAlignment="Left" Grid.Row="2" Foreground="White" VerticalAlignment="Bottom" FontSize="12" Margin="0,0,0,6.8" Height="15" Width="72" />
+                    <TextBlock Text="   GST&#10;CLIENTS" Grid.Column="1" Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="10,0,0.2,36.2" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+                </Grid>
+            </Button.Content>
+        </Button>
+        <TextBlock Text="{Binding SelectedReturnType}" Foreground="White" FontWeight="Bold" Grid.Row="4" FontSize="18" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <DataGrid
+                ItemsSource="{Binding Clients,Mode=TwoWay}"
+                CanUserAddRows="False"
+                ColumnHeaderStyle="{StaticResource HeaderStyle}"
+                BorderBrush="Purple"
+                Grid.Row="6" Grid.ColumnSpan="5" Background="Purple" AutoGenerateColumns="False" Name="aygrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="ID" Foreground="White" FontWeight="Bold"   Binding="{Binding Id,Mode=TwoWay}" IsReadOnly="True"   FontSize="20" FontFamily="Calibri" Width="120" />
+                <DataGridTextColumn Header="Name" Foreground="White" FontWeight="Bold"  Binding="{Binding Name,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
+                <DataGridTextColumn Header="DOB" Foreground="White" FontWeight="Bold"  Binding="{Binding DOB,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
+                <DataGridTextColumn Header="PAN" Foreground="White" FontWeight="Bold"  Binding="{Binding PAN,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
+                <DataGridTextColumn Header="GST" Foreground="White" FontWeight="Bold"  Binding="{Binding GST,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
+                <DataGridTextColumn Header="Phone" Foreground="White" FontWeight="Bold"  Binding="{Binding Mobile,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </UserControl>

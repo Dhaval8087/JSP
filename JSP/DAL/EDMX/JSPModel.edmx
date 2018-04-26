@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="JSPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccessYear">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AY" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Client_Details">
           <Key>
             <PropertyRef Name="Id" />
@@ -38,7 +45,7 @@
           <Property Name="ReturnTypeId" Type="int" Nullable="false" />
           <Property Name="PAN" Type="varchar" MaxLength="50" />
           <Property Name="GST" Type="varchar(max)" />
-          <Property Name="DOB" Type="date" />
+          <Property Name="DOB" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Company_Details">
           <Key>
@@ -106,6 +113,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="JSPModelStoreContainer">
+          <EntitySet Name="AccessYear" EntityType="Self.AccessYear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client_Details" EntityType="Self.Client_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client_Invoice" EntityType="Self.Client_Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
@@ -167,7 +175,7 @@
           <NavigationProperty Name="Client_Details" Relationship="JSPModel.ClientClient_Details" FromRole="Client" ToRole="Client_Details" />
           <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="GST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="DOB" Type="String" />
         </EntityType>
         <EntityType Name="Company_Details">
           <Key>
@@ -218,6 +226,7 @@
             <End Role="Client_Details" EntitySet="Client_Details" />
             <End Role="Client_Invoice" EntitySet="Client_Invoice" />
           </AssociationSet>
+          <EntitySet Name="AccessYears" EntityType="JSPModel.AccessYear" />
         </EntityContainer>
         <Association Name="ReturnTypeClient">
           <End Type="JSPModel.ReturnType" Role="ReturnType" Multiplicity="1" />
@@ -255,6 +264,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AccessYear">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -331,6 +347,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="AccessYears">
+            <EntityTypeMapping TypeName="JSPModel.AccessYear">
+              <MappingFragment StoreEntitySet="AccessYear">
+                <ScalarProperty Name="AY" ColumnName="AY" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

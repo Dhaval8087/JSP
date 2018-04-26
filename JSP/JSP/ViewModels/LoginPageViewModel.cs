@@ -35,7 +35,8 @@ namespace JSP.ViewModels
             {
                 return _LoginCommand ?? (_LoginCommand = new RelayCommand<object>((obj) =>
             {
-                App.ContainerVM.Content.Content = new AddClient();
+                //App.ContainerVM.Content.Content = new AddClient();
+                App.ContainerVM.Content.Content = new DashBoard();
                 /* var password = (obj as PasswordBox)?.Password;
                  if (_repository.AutheticateUser(Username, password))
                  {

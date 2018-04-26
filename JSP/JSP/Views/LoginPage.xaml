@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:JSP.Views"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -17,30 +18,33 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Welcome to JSP" FontSize="35" Width="Auto"
-                   Style="{StaticResource TextBlockStyle}" Margin="-8,-100,8,0" />
+                    Margin="-8,-100,8,0" />
 
+        <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Margin="-10,0,0,0"/>
         <TextBox  Grid.Row="0"
                   FontSize="20"
+                  Margin="8,0,0,0"
                   x:Name="username"
                   Text="{Binding Username}"
-                 Style="{StaticResource MyWaterMarkStyle}"/>
+                />
+
         <PasswordBox
             Tag="Password"
             Grid.Row="2"
             FontSize="20"
-
+            Margin="8,0,0,0"
             x:Name="password"
             />
 
 
         <Button x:Name="btnLogin" Width="150" Height="60"
                  BorderThickness="1"
-                Content="Login"
+
                 Foreground="White"
                 Grid.Row="4"
                 FontSize="15"
-                Style="{StaticResource roundButton}"
-                Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=password}">
+                Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=password}" >
+            <materialDesign:PackIcon Kind="Login" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Button>
 
     </Grid>
