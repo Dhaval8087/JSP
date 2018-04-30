@@ -1,6 +1,7 @@
 ﻿using DAL.Impl;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using JSP.Models;
 using JSP.Util;
 using System.Collections.ObjectModel;
@@ -71,12 +72,17 @@ namespace JSP.ViewModels
                     {
                         HandlePopUp.ShowPopUp(result);
                     }
+                    else
+                    {
+                        Messenger.Default.Send(this);
+                    }
                     App.ContainerVM.IsBusy = false;
                 }
             }));
             }
             set { _addNewClient = value; }
         }
+
 
 
         #endregion

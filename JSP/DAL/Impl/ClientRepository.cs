@@ -1,7 +1,7 @@
 ﻿using DAL.Dtos;
 using DAL.EDMX;
-using System.Collections.Generic;
 using System.Linq;
+
 namespace DAL.Impl
 {
     public class ClientRepository : BaseImplementation
@@ -29,17 +29,51 @@ namespace DAL.Impl
             }
             return response;
         }
-        public List<Client> GetAll(int id)
+        public  ClientsWithCount GetAll(int id, int offset, bool isCount = false)
         {
+            ClientsWithCount response = new ClientsWithCount();
             try
             {
-                return _context.Clients.Where(p => p.ReturnTypeId == id).ToList();
+
+                response.Clients = _context.Clients.Where(p => p.ReturnTypeId == id).OrderBy(p => p.Id).Skip(offset).Take(10).ToList();
+                if (isCount)
+                    response.TotalCount = _context.Clients.Count(p => p.ReturnTypeId == id);
             }
             catch (System.Exception ex)
             {
                 Log4Net.WriteException(ex);
                 return null;
             }
+            return response;
+        }
+        public ClientsWithCount GetByFilter(int id, string columnName, string value, int offset, bool isCount = false)
+        {
+            ClientsWithCount response = new ClientsWithCount();
+            try
+            {
+                switch (columnName)
+                {
+                    case "Name":
+                        response.Clients = _context.Clients.Where(p => p.Name.Contains(value) && p.ReturnTypeId == id).OrderBy(p=>p.Id).Skip(offset).Take(10).ToList();
+                        if (isCount)
+                            response.TotalCount = _context.Clients.Where(p => p.Name.Contains(value) && p.ReturnTypeId == id).Count();
+                        break;
+                    case "PanCard":
+                        response.Clients = _context.Clients.Where(p => p.PAN.Contains(value) && p.ReturnTypeId == id).OrderBy(p => p.Id).Skip(offset).Take(10).ToList();
+                        if (isCount)
+                            response.TotalCount = _context.Clients.Where(p => p.PAN.Contains(value) && p.ReturnTypeId == id).Count();
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            catch (System.Exception ex)
+            {
+
+                Log4Net.WriteException(ex);
+            }
+            return response;
         }
     }
 }

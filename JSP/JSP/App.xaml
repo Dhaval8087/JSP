@@ -18,7 +18,7 @@
                 <Setter Property="Foreground" Value="Ivory" />
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="BorderBrush" Value="{DynamicResource HeaderBorderBrush}" />
-                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderThickness" Value="0.5" />
                 <Setter Property="SnapsToDevicePixels" Value="True" />
                 <Setter Property="HorizontalContentAlignment" Value="Center" />
                 <Setter Property="MinWidth" Value="0" />

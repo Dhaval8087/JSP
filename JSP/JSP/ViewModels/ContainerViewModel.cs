@@ -70,6 +70,24 @@ namespace JSP.ViewModels
             set { _AYCommand = value; }
         }
 
+
+
+        private RelayCommand _ManageClientCommand;
+
+        public RelayCommand ManageClientCommand
+        {
+            get
+            {
+                return _ManageClientCommand ?? (_ManageClientCommand = new RelayCommand(() =>
+            {
+                ManageClients mc = new ManageClients();
+                mc.Show();
+            }));
+            }
+            set { _ManageClientCommand = value; }
+        }
+
+
         #endregion
 
 

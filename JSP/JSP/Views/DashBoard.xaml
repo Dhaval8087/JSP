@@ -16,8 +16,10 @@
             <RowDefinition Height="110" />
             <RowDefinition Height="20" />
             <RowDefinition Height="20" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="20" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="500" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -72,21 +74,41 @@
             </Button.Content>
         </Button>
         <TextBlock Text="{Binding SelectedReturnType}" Foreground="White" FontWeight="Bold" Grid.Row="4" FontSize="18" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <StackPanel Grid.Row="5" Grid.Column="3"  Orientation="Horizontal" Margin="20,0,0,0" Visibility="{Binding isSearch}">
+
+            <ComboBox Margin="5,0,0,0" ItemsSource="{Binding FilterColumn}" Width="50" SelectedItem="{Binding SelectedFilter}" DisplayMemberPath="{Binding Name}" />
+            <TextBox Text="{Binding SearchClient,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,0" Width="150" FontSize="18"/>
+            <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding SearchClientCommand}">
+                <Button.Content>
+                    <Image Source="/JSP;component/Resources/search.png" Height="25" Width="25" HorizontalAlignment="Left" />
+                </Button.Content>
+            </Button>
+        </StackPanel>
         <DataGrid
                 ItemsSource="{Binding Clients,Mode=TwoWay}"
                 CanUserAddRows="False"
+                Background="Transparent"
                 ColumnHeaderStyle="{StaticResource HeaderStyle}"
                 BorderBrush="Purple"
-                Grid.Row="6" Grid.ColumnSpan="5" Background="Purple" AutoGenerateColumns="False" Name="aygrid">
+                Grid.Row="7" Grid.ColumnSpan="5"  AutoGenerateColumns="False" Name="aygrid">
             <DataGrid.Columns>
                 <DataGridTextColumn  Header="ID" Foreground="White" FontWeight="Bold"   Binding="{Binding Id,Mode=TwoWay}" IsReadOnly="True"   FontSize="20" FontFamily="Calibri" Width="120" />
                 <DataGridTextColumn Header="Name" Foreground="White" FontWeight="Bold"  Binding="{Binding Name,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
                 <DataGridTextColumn Header="DOB" Foreground="White" FontWeight="Bold"  Binding="{Binding DOB,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
                 <DataGridTextColumn Header="PAN" Foreground="White" FontWeight="Bold"  Binding="{Binding PAN,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
                 <DataGridTextColumn Header="GST" Foreground="White" FontWeight="Bold"  Binding="{Binding GST,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
-                <DataGridTextColumn Header="Phone" Foreground="White" FontWeight="Bold"  Binding="{Binding Mobile,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
+                <DataGridTextColumn Header="Phone" Foreground="White" FontWeight="Bold"  Binding="{Binding Mobile,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="150" />
             </DataGrid.Columns>
         </DataGrid>
-
+        <Button  Grid.Row="8" FontSize="25" Width="50" Command="{Binding PreviousCommand}">
+            <Button.Content>
+                <materialDesign:PackIcon Kind="SkipPrevious"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Button.Content>
+        </Button>
+        <Button  Grid.Row="8" FontSize="25" Grid.Column="5" Width="50" Command="{Binding NextCommand}">
+            <Button.Content>
+                <materialDesign:PackIcon Kind="SkipNext"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Button.Content>
+        </Button>
     </Grid>
 </UserControl>

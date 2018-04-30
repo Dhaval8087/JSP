@@ -7,7 +7,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-         xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="ManageAY" Height="600" Width="600"
         WindowStartupLocation="CenterScreen" Visibility="Visible"  WindowStyle="None"  AllowsTransparency="True"
         >

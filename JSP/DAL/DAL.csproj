@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\ClientsWithCount.cs" />
     <Compile Include="Dtos\Login.cs" />
     <Compile Include="Dtos\ResponseBase.cs" />
     <Compile Include="Dtos\ReturnsType.cs" />

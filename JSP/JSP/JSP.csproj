@@ -108,6 +108,9 @@
     <Compile Include="AdminWindows\ManageAY.xaml.cs">
       <DependentUpon>ManageAY.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminWindows\ManageClients.xaml.cs">
+      <DependentUpon>ManageClients.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Client.cs" />
     <Compile Include="Util\HandlePopUp.cs" />
     <Compile Include="Util\LinqExtensions.cs" />
@@ -124,6 +127,10 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Page Include="AdminWindows\ManageAY.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindows\ManageClients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +210,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\GST.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
