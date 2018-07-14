@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:JSP.Views"
              Height="900" Width="900"
              mc:Ignorable="d"
@@ -90,7 +91,7 @@
                 Background="Transparent"
                 ColumnHeaderStyle="{StaticResource HeaderStyle}"
                 BorderBrush="Purple"
-                Grid.Row="7" Grid.ColumnSpan="5"  AutoGenerateColumns="False" Name="aygrid">
+                Grid.Row="7" Grid.ColumnSpan="5"  AutoGenerateColumns="False" Name="clientgrid">
             <DataGrid.Columns>
                 <DataGridTextColumn  Header="ID" Foreground="White" FontWeight="Bold"   Binding="{Binding Id,Mode=TwoWay}" IsReadOnly="True"   FontSize="20" FontFamily="Calibri" Width="120" />
                 <DataGridTextColumn Header="Name" Foreground="White" FontWeight="Bold"  Binding="{Binding Name,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
@@ -99,6 +100,11 @@
                 <DataGridTextColumn Header="GST" Foreground="White" FontWeight="Bold"  Binding="{Binding GST,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
                 <DataGridTextColumn Header="Phone" Foreground="White" FontWeight="Bold"  Binding="{Binding Mobile,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="150" />
             </DataGrid.Columns>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding SelectedClientCommand}" CommandParameter="{Binding ElementName=clientgrid,Path=SelectedItem}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </DataGrid>
         <Button  Grid.Row="8" FontSize="25" Width="50" Command="{Binding PreviousCommand}">
             <Button.Content>

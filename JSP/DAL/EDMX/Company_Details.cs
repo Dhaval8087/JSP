@@ -23,5 +23,10 @@ namespace DAL.EDMX
         public string PinCode { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
+        public string PAN { get; set; }
+        public string BankName { get; set; }
+        public string AccountNumber { get; set; }
+        public string IFSCCode { get; set; }
+        public string BranchName { get; set; }
     }
 }

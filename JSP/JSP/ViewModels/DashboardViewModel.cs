@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using JSP.Util;
+using JSP.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -271,6 +272,21 @@ namespace JSP.ViewModels
             }
             set { _NextCommand = value; }
         }
+        private RelayCommand<object> _SelectedClientCommand;
+
+        public RelayCommand<object> SelectedClientCommand
+        {
+            get { return _SelectedClientCommand ?? (_SelectedClientCommand=new RelayCommand<object>((obj)=> 
+            {
+                var client = obj as Client;
+                GenerateInvoiceViewModel vm = new GenerateInvoiceViewModel(client);
+                GenerateInvoice invoice = new GenerateInvoice();
+                invoice.DataContext = vm;
+                App.ContainerVM.Content = invoice;
+            })); }
+            set { _SelectedClientCommand = value; }
+        }
+
         private bool CanNext()
         {
             if (SelectedReturnTypeId != 0 && TotalClients > 10 && Clients.Count != 0 && ((Page + 1) * 10) <= TotalClients)

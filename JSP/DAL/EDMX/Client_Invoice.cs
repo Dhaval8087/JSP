@@ -18,6 +18,7 @@ namespace DAL.EDMX
         public Nullable<int> Client_Id { get; set; }
         public string InvoiceNumber { get; set; }
         public int Client_DetailsId { get; set; }
+        public string Path { get; set; }
     
         public virtual Client_Details Client_Details { get; set; }
     }

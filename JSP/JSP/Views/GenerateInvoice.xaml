@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="JSP.Views.GenerateInvoice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:local="clr-namespace:JSP.AdminWindows"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Height="900" Width="900"
+       >
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Generate Invoice" FontWeight="ExtraBold" Foreground="Purple" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" />
+        <Rectangle x:Name="rectangle1"  Grid.Row="1" Grid.ColumnSpan="5" Height="3" Fill="Red" Stroke="Orange" HorizontalAlignment="Stretch"  />
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <ComboBox ItemsSource="{Binding AYCollections}" Name="ay" HorizontalAlignment="Left" DisplayMemberPath="AY" Width="150" FontSize="20" VerticalAlignment="Center" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectedAYChangedCommand}" CommandParameter="{Binding ElementName=ay,Path=SelectedItem}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+            <StackPanel  Orientation="Horizontal" Grid.Column="1">
+                <TextBlock Text="Generate Invoice" FontSize="20" VerticalAlignment="Center"/>
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                         Command="{Binding GenerateInvoiceCommand}"
+                          VerticalAlignment="Center"
+                        Margin="10 0 0 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                    <materialDesign:PackIcon Kind="Plus" />
+                </Button>
+            </StackPanel>
+        </Grid>
+        <DataGrid
+                ItemsSource="{Binding Invoices,Mode=TwoWay}"
+                CanUserAddRows="False"
+                Background="Transparent"
+                ColumnHeaderStyle="{StaticResource HeaderStyle}"
+                BorderBrush="Purple"
+                Grid.Row="4"   AutoGenerateColumns="False" Name="invoicegrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="ID" Foreground="White" FontWeight="Bold"   Binding="{Binding Id,Mode=TwoWay}" IsReadOnly="True"   FontSize="20" FontFamily="Calibri" Width="120" Visibility="Collapsed" />
+                <DataGridTextColumn Header="Name" Foreground="White" FontWeight="Bold"  Binding="{Binding Name,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
+                <DataGridTextColumn Header="Invoice" Foreground="White" FontWeight="Bold"  Binding="{Binding InvoiceNumber,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
+                <DataGridTextColumn Header="PAN" Foreground="White" FontWeight="Bold"  Binding="{Binding Pan,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" Width="120" />
+                <DataGridTextColumn Header="Save Path" Foreground="White" FontWeight="Bold"  Binding="{Binding Path,Mode=TwoWay}"    FontSize="20" FontFamily="Calibri" />
+
+            </DataGrid.Columns>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding SelectedInvoiceCommand}" CommandParameter="{Binding ElementName=invoicegrid,Path=SelectedItem}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </DataGrid>
+        
+    </Grid>
+
+</UserControl>

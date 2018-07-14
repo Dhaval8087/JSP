@@ -39,7 +39,24 @@ namespace JSP.ViewModels
 
 
         #endregion
+
         #region Commands
+        private RelayCommand _DashboardCommand;
+
+        public RelayCommand DashboardCommand
+        {
+            get
+            {
+                return _DashboardCommand ?? (_DashboardCommand = new RelayCommand(() =>
+            {
+                DashBoard dashboard = new DashBoard();
+                dashboard.DataContext = new DashboardViewModel();
+                App.ContainerVM.Content = dashboard;
+            }));
+            }
+            set { _DashboardCommand = value; }
+        }
+
         private RelayCommand _ExitCommand;
 
         public RelayCommand ExitCommand
@@ -87,6 +104,20 @@ namespace JSP.ViewModels
             set { _ManageClientCommand = value; }
         }
 
+        private RelayCommand _ManageCompanyCommand;
+
+        public RelayCommand ManageCompanyCommand
+        {
+            get
+            {
+                return _ManageCompanyCommand ?? (_ManageCompanyCommand = new RelayCommand(() =>
+            {
+                ManageCompany mc = new ManageCompany();
+                mc.Show();
+            }));
+            }
+            set { _ManageCompanyCommand = value; }
+        }
 
         #endregion
 

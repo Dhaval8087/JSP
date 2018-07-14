@@ -28,6 +28,7 @@
           <Property Name="Client_Id" Type="int" />
           <Property Name="InvoiceNumber" Type="varchar(max)" />
           <Property Name="Client_DetailsId" Type="int" Nullable="false" />
+          <Property Name="Path" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -60,6 +61,11 @@
           <Property Name="PinCode" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" />
           <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="PAN" Type="varchar" MaxLength="50" />
+          <Property Name="BankName" Type="varchar" MaxLength="150" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="150" />
+          <Property Name="IFSCCode" Type="varchar" MaxLength="150" />
+          <Property Name="BranchName" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="Logins">
           <Key>
@@ -156,6 +162,7 @@
           <Property Name="InvoiceNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Client_Details" Relationship="JSPModel.Client_DetailsClient_Invoice" FromRole="Client_Invoice" ToRole="Client_Details" />
           <Property Name="Client_DetailsId" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -175,7 +182,7 @@
           <NavigationProperty Name="Client_Details" Relationship="JSPModel.ClientClient_Details" FromRole="Client" ToRole="Client_Details" />
           <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="GST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DOB" Type="String" />
+          <Property Name="DOB" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="Company_Details">
           <Key>
@@ -190,6 +197,11 @@
           <Property Name="PinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BankName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IFSCCode" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BranchName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -289,7 +301,8 @@
     <EntitySetMapping Name="Client_Invoice">
       <EntityTypeMapping TypeName="IsTypeOf(JSPModel.Client_Invoice)">
         <MappingFragment StoreEntitySet="Client_Invoice">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Client_Id" ColumnName="Client_Id" />
           <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
           <ScalarProperty Name="Client_DetailsId" ColumnName="Client_DetailsId" />
@@ -318,7 +331,12 @@
     <EntitySetMapping Name="Company_Details">
       <EntityTypeMapping TypeName="IsTypeOf(JSPModel.Company_Details)">
         <MappingFragment StoreEntitySet="Company_Details">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Address1" ColumnName="Address1" />
           <ScalarProperty Name="Address2" ColumnName="Address2" />

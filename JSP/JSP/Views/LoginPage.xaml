@@ -20,8 +20,9 @@
         <TextBlock Text="Welcome to JSP" FontSize="35" Width="Auto"
                     Margin="-8,-100,8,0" />
 
-        <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Margin="-10,0,0,0"/>
+       
         <TextBox  Grid.Row="0"
+                  materialDesign:HintAssist.Hint="username"
                   FontSize="20"
                   Margin="8,0,0,0"
                   x:Name="username"
@@ -30,6 +31,7 @@
 
         <PasswordBox
             Tag="Password"
+            materialDesign:HintAssist.Hint="pasword"
             Grid.Row="2"
             FontSize="20"
             Margin="8,0,0,0"

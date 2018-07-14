@@ -1,16 +1,15 @@
-﻿<Window x:Class="JSP.ContainerPage"
+﻿<Window x:Class="JSP.AdminWindows.ManageCompany"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:JSP"
-
+       xmlns:local="clr-namespace:JSP.AdminWindows"
         xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:views="clr-namespace:JSP.Views"
         mc:Ignorable="d"
-        Height="650" Width="1000"
-        VerticalAlignment="Center"
-       WindowStartupLocation="CenterScreen" Visibility="Visible"  WindowStyle="None"  AllowsTransparency="false"
-        Title="MainWindow">
+         Height="600" Width="800"
+        WindowStartupLocation="CenterScreen" Visibility="Visible"  WindowStyle="None"  AllowsTransparency="True"
+        >
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="Template">
@@ -37,25 +36,11 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top" FontSize="15">
             <MenuItem Header="File">
-                <MenuItem Header="_Dashboard" Command="{Binding DashboardCommand}" />
-                <MenuItem Header="_Exit" Command="{Binding ExitCommand}" />
-            </MenuItem>
-            <MenuItem Header="AY" Visibility="{Binding AYMenuVisbility}">
-                <MenuItem Header="_Manage AY" Command="{Binding AYCommand}"  />
-            </MenuItem>
-            <MenuItem Header="Clients" Visibility="{Binding AYMenuVisbility}">
-                <MenuItem Header="_ADD Client" Command="{Binding ManageClientCommand}" />
-            </MenuItem>
-            <MenuItem Header="Company" Visibility="{Binding AYMenuVisbility}">
-                <MenuItem Header="_ADD Company" Command="{Binding ManageCompanyCommand}" />
+                <MenuItem Header="_Exit" Click="MenuItem_Click" />
             </MenuItem>
         </Menu>
-        
-        <extToolkit:BusyIndicator IsBusy="{Binding IsBusy}">
-            <ContentControl Content="{Binding Content,Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </extToolkit:BusyIndicator>
+        <Grid>
+            <views:AddCompany />
+        </Grid>
     </DockPanel>
-
-
-
 </Window>

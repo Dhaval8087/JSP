@@ -81,6 +81,11 @@ namespace JSP.ViewModels
                 return _ActionAYCommand ?? (_ActionAYCommand = new RelayCommand<object>((obj) =>
             {
                 ResponseBase result = null;
+                if (obj.Equals("0"))
+                {
+                    OpenDialog = false;
+                    return;
+                }
                 if (obj.ToString() == "1" && !IsEdit)
                 {
                     AccessYear accessyr = new AccessYear

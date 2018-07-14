@@ -11,7 +11,7 @@ namespace JSP.Views
         public AddClient()
         {
             InitializeComponent();
-            this.DataContext = new AddClientViewModel();
+            DataContext = new AddClientViewModel();
         }
     }
 }

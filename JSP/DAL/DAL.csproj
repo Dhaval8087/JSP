@@ -94,7 +94,9 @@
     </Compile>
     <Compile Include="Impl\AccessYearRepository.cs" />
     <Compile Include="Impl\BaseImplementation.cs" />
+    <Compile Include="Impl\ClientInvoiceRespository.cs" />
     <Compile Include="Impl\ClientRepository.cs" />
+    <Compile Include="Impl\CompanyRepository.cs" />
     <Compile Include="Impl\Log4Net.cs" />
     <Compile Include="Impl\LoginRepository.cs" />
     <Compile Include="Impl\ReturnTypeRepository.cs" />
