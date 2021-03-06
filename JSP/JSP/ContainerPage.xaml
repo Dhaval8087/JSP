@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Height="650" Width="1000"
         VerticalAlignment="Center"
-       WindowStartupLocation="CenterScreen" Visibility="Visible"  WindowStyle="None"  AllowsTransparency="false"
+       WindowStartupLocation="CenterOwner" Visibility="Visible"  WindowStyle="SingleBorderWindow"  AllowsTransparency="False"
         Title="MainWindow">
     <Window.Style>
         <Style TargetType="{x:Type Window}">
